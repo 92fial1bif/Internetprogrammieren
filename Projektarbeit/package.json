@@ -1,0 +1,22 @@
+{
+  "name": "hft-asgmt-js-async",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/runtime": "^7.7.2",
+    "fetch-mock": "^8.0.0",
+    "jest": "^24.9.0",
+    "jquery": "^3.5.1",
+    "node-fetch": "^2.6.0",
+    "supertest": "^4.0.2"
+  }
+}
