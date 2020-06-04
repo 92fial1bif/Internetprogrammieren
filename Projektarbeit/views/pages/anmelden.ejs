@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<!--
-Template Name: Arialogic
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
 <html>
 
 <head>
-  <% include ../partials/head %>
+ 
+  <%- include ('../partials/head') %>
   <title>Arialogic | Pages | Full Width</title>
-  <script src="" type="text/javascript"></script>
+  <script>
+    $(document).ready(function(){
+        var from,to,subject,text;
+        $("#send_email").click(function(){     
+            to=$("#to").val();     
+            $("#message").text("Sending E-mail...Please wait");
+            $.get("http://localhost:3000/send",{to:to},function(data){
+            if(data=="sent")
+            {
+                $("#message").empty().html("<p>Email is been sent at "+to+" . Please check inbox !</p>");
+            }
+    
+    });
+        });
+    });
+    
+    </script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="../../public/layout.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 
 <body id="top">
@@ -40,6 +52,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <div id="logo">
           <!-- ################################################################################################ -->
           <h1><a href="/">World Wide Green</a></h1>
+          <br>
           <p>Green for everyone!</p>
           <!-- ################################################################################################ -->
         </div>
@@ -71,55 +84,34 @@ Licence URI: http://www.os-templates.com/template-terms
             </div>
           </div>
           <div class="row justify-content-left">
-            <h2>Registieren</h2>
+            <h2>Petitionen</h2>
           </div>
+          <p>Durch Ihre Stimmen können wir etwas bewegen, denn jede Stimme zählt.<br>
+            Vielen Dank für ihre Teilnahme an der Petition</p>
           <div class="row justify-content-left">
-
-            <form id='register-form' action="/anmelden" method="post">
-              <div class="one_quarter first">
+            <div class="col-xs-12 col-sm-8">
+              <div class="one_third first">
                 <label for="firstname">Vorname<span></span></label>
-                <input type="text" name="firstname" id="register-form-firstname" value="" size="22" required>
+                <input type="text" name="firstname" placeholder="Maxi" id="register-form-firstname" value="" size="22" required>
+                
               </div>
-              <div class="one_quarter">
+              <div class="one_third">
                 <label for="lastname">Nachname<span></span></label>
-                <input type="text" name="lastname" id="register-form-lastname" value="" size="22" required>
+                <input type="text" name="lastname" Placeholder="Mustermann" id="register-form-lastname" value="" size="22" required>
               </div>
-              <div class="one_quarter">
-                <label for="email">Mail<span></span></label>
-                <input type="email" name="email" id="register-form-email" value="" size="22" required>
+              <div class="one_third">
+                <label for="lastname">E-Mail<span></span></label>
+                <input type="text" id="to" placeholder="Enter E-mail"value="" size="22" required><br>
+                
               </div>
-              <div class="one_quarter">
-                <label for="passwort">Passwort<span></span></label>
-                <input type="password" name="password" id="register-form-password" value="" size="22" required>
-              </div>
-              &nbsp;
+             
+              <span id="message"></span>
               <div>
-                <button id="register-form-submit" type="signin" class="btn btn-primary">Registieren</button>
+                <button id="send_email" type="signin" class="btn btn-primary">Unterschreiben</button>
               </div>
-            </form>
+            </div>
 
           </div>
-        </div>
-
-        <div class="row justify-content-left">
-          <h2>Anmeldung</h2>
-        </div>
-        <div class="row justify-content-left">
-          <form action="auth" method="post">
-            <div>
-              <label for="email">Mail <span></span></label>
-              <input type="email" name="email" id="email" value="" size="22" required>
-            </div>
-            &nbsp;
-            <div>
-              <label for="passwort">Passwort <span></span></label>
-              <input type="password" name="password" id="passwort" value="" size="22" required>
-            </div>
-            &nbsp;
-            <div>
-              <input type="submit" name="login" value="Anmelden">
-            </div>
-          </form>
         </div>
 
 

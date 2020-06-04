@@ -10,9 +10,10 @@ $( document ).ready((() => {
   // for testing purposes, you can use a "debugger;" statement or also "console.log(element)"
   console.log('DOM is ready!');
   
-var commenttable = document.getElementById ('comment-table');
-var donatetable = document.getElementById ('donate-table');
-console.log(commenttable);  
+var commenttable = document.getElementById ('comment-table')
+var donatetable = document.getElementById ('donate-table')
+var donatesumtable = document.getElementById('donate-sum')
+ 
 // Seite prüfen :)
   if (commenttable)
   {
@@ -22,6 +23,11 @@ console.log(commenttable);
   if (donatetable) {
     getDonate();// TODO: Implement getData Method
   
+  }
+  // console.log(donatesumtable) 
+  if(donatesumtable)
+  {
+    sumDonate();
   }
 
 
@@ -48,7 +54,7 @@ console.log(commenttable);
  // Spenden Prüfen
  donateform.on('keyup', (event) =>
  {
-   if (formElementIsValid(donateinput.val(), 5) && formElementIsValid(donateinput1.val(), 5) && emailFieldIsValid(donateinput2.val()) && amountFieldIsValid(donateinput3.val(), 1) && formElementIsValid(donateinput4.val(), 5)) {
+   if (formElementIsValid(donateinput.val(), 3) && formElementIsValid(donateinput1.val(), 3) && emailFieldIsValid(donateinput2.val()) && amountFieldIsValid(donateinput3.val(), 1) && formElementIsValid(donateinput4.val(), 5)) {
      toggleAlertBox(false)
      toggleSubmit(false)
    } else {
@@ -58,17 +64,19 @@ console.log(commenttable);
 
  })
 
+
  // Spenden abschicken
  donateform.on('submit', async(event) => {
    event.preventDefault();
    await donate(donateinput.val(),donateinput1.val(), donateinput2.val(), donateinput3.val(),donateinput4.val(),);
    await getDonate();
+   await sumDonate();
  })
 
   // Registrierung Prüfen
   registerform.on('keyup', (event) =>
   {
-    if (formElementIsValid(registerinput.val(), 5) && formElementIsValid(registerinput1.val(), 5) && emailFieldIsValid(registerinput2.val()) && formElementIsValid(registerinput3.val(), 5)) {
+    if (formElementIsValid(registerinput.val(), 3) && formElementIsValid(registerinput1.val(), 3) && emailFieldIsValid(registerinput2.val()) && formElementIsValid(registerinput3.val(), 5)) {
       toggleAlertBox(false)
       toggleSubmit(false)
     } else {
@@ -86,7 +94,7 @@ console.log(commenttable);
 
   // Kommentar Prüfen
   form.on('keyup', (event) => {
-    if (formElementIsValid(input.val(), 5) && formElementIsValid(input2.val(), 5) && formElementIsValid(textarea.val(), 1)) {
+    if (formElementIsValid(input.val(), 3) && formElementIsValid(input2.val(), 3) && formElementIsValid(textarea.val(), 1)) {
       toggleAlertBox(false)
       toggleSubmit(false)
     } else {
@@ -165,6 +173,7 @@ async function getData() {
   });
 }
 
+
 // GET : Spenden Daten
 async function getDonate() {
     // clear complete table
@@ -177,7 +186,7 @@ async function getDonate() {
             'Content-Type': 'application/json'
           },
     });
-  
+    getDonatespenden()
   
     // fill table
     const json = await response.json();
@@ -188,6 +197,29 @@ async function getDonate() {
       //console.log(elem.first_name);
     });
 
+    async function getDonatespenden() {
+      // clear complete table
+      const tableBody =  $('.table > tbody');
+      tableBody.empty();
+      // fetch table data
+      const response = await fetch('api/spendengesamt', {
+        method: "get",
+        headers: {
+              'Content-Type': 'application/json'
+            },
+      });
+    
+    
+      // fill table
+      const json = await response.json();
+      console.log(json);
+      json.forEach(elem => {
+      
+        tableBody.append(`<tr><td></td><td></td><td><td>${elem.gesamt}</td></tr>`);
+      
+      });
+    
+    }
 }
 
 // POST : Kommentar Daten

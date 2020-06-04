@@ -2,9 +2,11 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser')
 const db = new sqlite3.Database('./db/database.db');
+const mailer = require('nodemailer');
 
 const port = process.env.PORT || 3000;
 const app = express();
+
 
 app.set('view engine', 'ejs');
 
@@ -44,6 +46,13 @@ app.get('/spenden', (req, res) => {
   });
 });
 
+// GET : Spenden Summe
+app.get('/spenden' , (req,res) =>{
+  db.all('SELECT SUM(amount) FROM donation ',(err,donation_sum))
+  res.json(donation_sum)
+  console.log(donation_sum)
+})
+
 app.get('/api/spenden', async (req, res) => {
   db.all('SELECT * FROM donation', (err, donation) => {
     res.json(donation);
@@ -59,6 +68,62 @@ app.get('/gallery', (req, res) => {
 app.get('/anmelden', (req, res) => {
   res.render('pages/anmelden', { success: true });
 });
+
+ // Auto-Mail
+app.get('/anmelden' ,(req,res) =>{
+  res.render('anmelden.ejs')
+})
+
+// GET : Mail
+
+app.get('/',function(req,res){
+  res.sendfile('index.html');
+});
+app.get('/send',function(req,res){
+      rand=Math.floor((Math.random() * 100) + 54);
+  host=req.get('host');
+  link="http://"+req.get('host')+"/verify?id="+rand;
+  mailOptions={
+      to : req.query.to,
+      subject : "Please confirm your Email account",
+      html : "Vielen Dank für Ihre Unterstützung.<br>Wir halten Sie bei Veränderungen, immer auf dem neusten Stand.<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
+  }
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response){
+   if(error){
+          console.log(error);
+      res.end("error");
+   }else{
+          console.log("Message sent: " + response.message);
+      res.end("sent");
+       }
+});
+});
+
+// GET : Mail
+
+app.get('/verify',function(req,res){
+  console.log(req.protocol+":/"+req.get('host'));
+  if((req.protocol+"://"+req.get('host'))==("http://"+host))
+  {
+    console.log("Domain is matched. Information is from Authentic email");
+    if(req.query.id==rand)
+    {
+        console.log("email is verified");
+        res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+    }
+    else
+    {
+        console.log("email is not verified");
+        res.end("<h1>Bad Request</h1>");
+    }
+  }
+  else
+  {
+    res.end("<h1>Request is from unknown source");
+  }
+  });
+  
 
 // GET : Partner 
 app.get('/partner', (req, res) => {
@@ -128,6 +193,26 @@ app.post('/spenden', (req, res) => {
     res.json({error: "Request body is not correct"});
     }
 });
+
+app.get('/api/spendengesamt', async (req, res) => {
+  db.all('SELECT SUM(amount) AS gesamt FROM donation', (err, donation) => {
+    res.json(donation);
+  });
+});
+
+// Verbindung zur Domain
+
+var smtpTransport = mailer.createTransport({
+  service: "Gmail",
+  auth: {
+      user: "worldwidegreenhft@gmail.com",
+      pass: "worldwidegreen0711"
+  }
+});
+var rand,mailOptions,host,link;
+
+
+
 
 
 const server = app.listen(port, () => {

@@ -5,7 +5,8 @@
 <title>Arialogic | Pages | Gallery</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../../public/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="../../public/layout.css"  rel="stylesheet" type="text/css" media="all">
+<link href="../../public/lightbox.css" rel="stylesheet">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -53,30 +54,57 @@
       <!-- ################################################################################################ -->
       <div id="gallery">
         <figure>
-          <header class="heading">Gallery Title Goes Here</header>
           <ul class="nospace clear">
-              <li class="one_third first"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-              <li class="one_third"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
-              <li class="one_third"><a href="#"><img src="../images/demo/gallery/01.png" alt=""></a></li>
+            <a href="../../public/images/demo/panda.jpg" data-lightbox="show-1" data-title="Panda">
+            <li class="one_third first"><img src="../../public/images/demo/panda.jpg"></a></li>
+          </a>
+          <a href="../../public/images/demo/Natur2014Bild2.jpg" data-lightbox="show-1" data-title="Tiger">
+              <li class="one_third"><img src="../../public/images/demo/Natur2014Bild2.jpg"></a></li>
+            </a>
+            <a href="../../public/images/demo/Natur2014Bild3.jpg" data-lightbox="show-1" data-title="Elefant">
+              <li class="one_third"><img src="../../public/images/demo/Natur2014Bild3.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/Natur2014Bild4.jpg" data-lightbox="show-1" data-title="Forscher">
+              <li class="one_third first"><img src="../../public/images/demo/Natur2014Bild4.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/Natur2014Bild5.jpg" data-lightbox="show-1" data-title="Kleiner Frosch">
+              <li class="one_third"><img src="../../public/images/demo/Natur2014Bild5.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/HoheSeeErstesBild.jpg" data-lightbox="show-1" data-title="Krabbe">
+              <li class="one_third"><img src="../../public/images/demo/HoheSeeErstesBild.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/HoheSee2BildReal.jpg" data-lightbox="show-1" data-title="Hohe See">
+              <li class="one_third first"><img src="../../public/images/demo/HoheSee2BildReal.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/HoheSee3.jpg" data-lightbox="show-1" data-title="Fisch">
+              <li class="one_third"><img src="../../public/images/demo/HoheSee3.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/bol1.jpg" data-lightbox="show-1" data-title="Dorf in Bolivien">
+              <li class="one_third"><img src="../../public/images/demo/bol1.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/bol2.jpg" data-lightbox="show-1" data-title="Schule in Bolivien">
+              <li class="one_third first"><img src="../../public/images/demo/bol2.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/KazaBild1.jpg" data-lightbox="show-1" data-title="Elefantenfamilie in Kaza">
+              <li class="one_third"><img src="../../public/images/demo/KazaBild1.jpg" alt=""></a></li>   
+            </a>       
+            <a href="../../public/images/demo/Bild2Elefant.jpg" data-lightbox="show-1" data-title="Elefant in Kaza">
+              <li class="one_third"><img src="../../public/images/demo/Bild2Elefant.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/kazaBild3Real.jpg" data-lightbox="show-1" data-title="Kaza Karte">
+              <li class="one_third first"><img src="../../public/images/demo/kazaBild3Real.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/BauBild4.2.jpg" data-lightbox="show-1" data-title="Bau am Fluss">
+              <li class="one_third"><img src="../../public/images/demo/BauBild4.2.jpg" alt=""></a></li>
+            </a>
+            <a href="../../public/images/demo/BauBild4.jpg" data-lightbox="show-1" data-title="Unberührte Natur">
+              <li class="one_third"><img src="../../public/images/demo/BauBild4.jpg" alt=""></a></li>
+            </a>
           </ul>
-          <figcaption>Gallery Description Goes Here</figcaption>
         </figure>
       </div>
       <!-- ################################################################################################ -->
       <!-- ################################################################################################ -->
-      <nav class="pagination">
-        <ul>
-          <li><a class="btn inverse" href="#">&laquo; Zurück</a></li>
-          <li class="current"><strong>1</strong></li>
-          <li><a class="btn inverse" href="2">2</a></li>
-          <li><a class="btn inverse" href="#">3</a></li>
-          <li><a class="btn inverse" href="#">4</a></li>
-          <li><a class="btn inverse" href="#">5</a></li>
-          <li><a class="btn inverse" href="#">6</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a class="btn inverse" href="#">Weiter &raquo;</a></li>
-        </ul>
-      </nav>
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
@@ -158,6 +186,8 @@
 <script src="../layout/scripts/jquery.min.js"></script>
 <script src="../layout/scripts/jquery.backtotop.js"></script>
 <script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="../../public/lightbox.js"></script>
 <!-- IE9 Placeholder Support -->
 <script src="../layout/scripts/jquery.placeholder.min.js"></script>
 <!-- / IE9 Placeholder Support -->
