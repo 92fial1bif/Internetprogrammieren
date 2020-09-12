@@ -15,7 +15,7 @@
     "fetch-mock": "^8.0.0",
     "jest": "^24.9.0",
     "jquery": "^3.5.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "supertest": "^4.0.2",
     "nodemon": "^2.0.4"
   },
